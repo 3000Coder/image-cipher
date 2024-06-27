@@ -11,8 +11,10 @@ def make_number_even(integer: int) -> int:
     return integer - integer % 2
 
 def make_number_odd(integer: int) -> int:
-    return integer + (integer % 2 - 1)
-
+    if integer % 2 == 0:
+        return integer + 1
+    else:
+        return integer
 
 # Check if message can fit
 if len(msg)*8 >= img.size[0]*img.size[1]*3:
@@ -22,6 +24,7 @@ if len(msg)*8 >= img.size[0]*img.size[1]*3:
 msg_bits = []
 for c in msg.encode('utf-8'):
     msg_bits += utf8_to_array_of_bits(c)
+msg_bits.reverse()
 
 stop_encoding = False
 bits_left = len(msg_bits)
@@ -50,6 +53,5 @@ for x in range(img.size[0]):
         gn = modify_color(g)
         bn = modify_color(b)
         img.putpixel((x, y), (rn, gn, bn))
-        # print(img.getpixel((x, y))[0])
 
 img.save('new.png')
