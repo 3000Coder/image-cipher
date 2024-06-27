@@ -1,7 +1,6 @@
 from PIL import Image
 
-img = Image.open("img.png")
-img.convert('RGB') 
+img = Image.open("img.png").convert('RGB')
 msg = "Hello, World!"
 
 def utf8_to_array_of_bits(integer: int) -> list[bool]:
@@ -13,15 +12,6 @@ def make_number_even(integer: int) -> int:
 
 def make_number_odd(integer: int) -> int:
     return integer + (integer % 2 - 1)
-
-
-for i in range(256):
-    if make_number_even(i) % 2 != 0:
-        print("FAILED")
-        exit()
-    if make_number_odd(i) % 2 != 1:
-        print("FAILED")
-        exit()
 
 
 # Check if message can fit
@@ -60,6 +50,6 @@ for x in range(img.size[0]):
         gn = modify_color(g)
         bn = modify_color(b)
         img.putpixel((x, y), (rn, gn, bn))
-        #print(img.getpixel((x, y))[0]%2)
+        # print(img.getpixel((x, y))[0])
 
 img.save('new.png')
